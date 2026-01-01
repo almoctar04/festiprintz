@@ -1,53 +1,6 @@
 // Données des produits
 let produits = [
-    {
-        id: 1,
-        nom: "T-shirt personnalisé",
-        description: "T-shirt 100% coton avec impression de qualité",
-        prix: 5000,
-        image: "https://via.placeholder.com/300x300/550b14/ffffff?text=T-shirt",
-        phare: true
-    },
-    {
-        id: 2,
-        nom: "Mug personnalisé",
-        description: "Mug céramique avec impression personnalisée",
-        prix: 3500,
-        image: "https://via.placeholder.com/300x300/cbc0b2/333333?text=Mug",
-        phare: true
-    },
-    {
-        id: 3,
-        nom: "Casquette personnalisée",
-        description: "Casquette ajustable avec broderie",
-        prix: 4500,
-        image: "https://via.placeholder.com/300x300/7a0f1c/ffffff?text=Casquette",
-        phare: true
-    },
-    {
-        id: 4,
-        nom: "Sac en tissu personnalisé",
-        description: "Sac écologique avec impression personnalisée",
-        prix: 3000,
-        image: "https://via.placeholder.com/300x300/7e6961/ffffff?text=Sac",
-        phare: false
-    },
-    {
-        id: 5,
-        nom: "Stylo personnalisé",
-        description: "Stylo bille avec gravure personnalisée",
-        prix: 1500,
-        image: "https://via.placeholder.com/300x300/550b14/ffffff?text=Stylo",
-        phare: false
-    },
-    {
-        id: 6,
-        nom: "Poster personnalisé",
-        description: "Poster A3 avec impression haute qualité",
-        prix: 2500,
-        image: "https://via.placeholder.com/300x300/cbc0b2/333333?text=Poster",
-        phare: true
-    }
+    
 ];
 
 // Charger les produits depuis localStorage s'ils existent
