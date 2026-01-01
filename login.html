@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - FestiPrintz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="https://via.placeholder.com/50x50/550b14/ffffff?text=FP" alt="FestiPrintz Logo" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-name">FestiPrintz</div>
+                    <div class="logo-tagline">Objets personnalisés à Niamey</div>
+                </div>
+            </a>
+            
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="personnalisation.html"><i class="fas fa-palette"></i> Personnalisation</a>
+                <a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier <span class="cart-count">0</span></a>
+                <a href="login.html" class="active"><i class="fas fa-user"></i> Connexion</a>
+                <div class="social-icons">
+                    <a href="https://tiktok.com/@festiprintz.ny" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://instagram.com/FestiPrintz" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://snapchat.com/add/Festiprintz" target="_blank" class="social-icon"><i class="fab fa-snapchat"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="compte">
+        <div class="container">
+            <div class="compte-container">
+                <!-- Formulaire de connexion -->
+                <div class="form-container" id="connexion-form">
+                    <h2><i class="fas fa-sign-in-alt"></i> Connexion</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password"><i class="fas fa-lock"></i> Mot de passe</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <i class="fas fa-sign-in-alt"></i> Se connecter
+                        </button>
+                    </form>
+                    <div class="switch-form">
+                        <p>Pas encore de compte ? <a href="#" id="switch-to-register">Inscrivez-vous ici</a></p>
+                    </div>
+                    <div class="admin-link">
+                        <p><a href="admin.html"><i class="fas fa-cog"></i> Accès administrateur</a></p>
+                    </div>
+                </div>
+                
+                <!-- Formulaire d'inscription -->
+                <div class="form-container" id="inscription-form" style="display: none;">
+                    <h2><i class="fas fa-user-plus"></i> Inscription</h2>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="register-nom"><i class="fas fa-user"></i> Nom</label>
+                            <input type="text" id="register-nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-prenom"><i class="fas fa-user"></i> Prénom</label>
+                            <input type="text" id="register-prenom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-phone"><i class="fas fa-phone"></i> Téléphone</label>
+                            <input type="tel" id="register-phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password"><i class="fas fa-lock"></i> Mot de passe</label>
+                            <input type="password" id="register-password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm"><i class="fas fa-lock"></i> Confirmer le mot de passe</label>
+                            <input type="password" id="register-confirm" required>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <i class="fas fa-user-plus"></i> S'inscrire
+                        </button>
+                    </form>
+                    <div class="switch-form">
+                        <p>Déjà un compte ? <a href="#" id="switch-to-login">Connectez-vous ici</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FestiPrintz</h3>
+                    <p>Vente d'objets personnalisés à Niamey, Niger. Commandes via WhatsApp uniquement.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> +227 8114 4032</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Niamey, Niger</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="https://tiktok.com/@festiprintz.ny" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                        <a href="https://instagram.com/FestiPrintz" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://snapchat.com/add/Festiprintz" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 FestiPrintz - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/22781144032?text=Bonjour%20FestiPrintz,%20je%20voudrais%20plus%20d'informations" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mettreAJourCompteurPanier();
+            
+            // Basculer entre connexion et inscription
+            const switchToRegister = document.getElementById('switch-to-register');
+            const switchToLogin = document.getElementById('switch-to-login');
+            const connexionForm = document.getElementById('connexion-form');
+            const inscriptionForm = document.getElementById('inscription-form');
+            
+            switchToRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                connexionForm.style.display = 'none';
+                inscriptionForm.style.display = 'block';
+            });
+            
+            switchToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                inscriptionForm.style.display = 'none';
+                connexionForm.style.display = 'block';
+            });
+            
+            // Gestion de la connexion
+            const loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                // Récupérer les utilisateurs enregistrés
+                const utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
+                
+                // Vérifier les identifiants
+                const utilisateur = utilisateurs.find(u => u.email === email && u.password === password);
+                
+                if (utilisateur) {
+                    // Connexion réussie
+                    localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateur));
+                    alert('Connexion réussie !');
+                    window.location.href = 'compte.html';
+                } else {
+                    alert('Email ou mot de passe incorrect');
+                }
+            });
+            
+            // Gestion de l'inscription
+            const registerForm = document.getElementById('register-form');
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const nom = document.getElementById('register-nom').value;
+                const prenom = document.getElementById('register-prenom').value;
+                const email = document.getElementById('register-email').value;
+                const phone = document.getElementById('register-phone').value;
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm').value;
+                
+                // Validation
+                if (password !== confirmPassword) {
+                    alert('Les mots de passe ne correspondent pas');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    alert('Le mot de passe doit contenir au moins 6 caractères');
+                    return;
+                }
+                
+                // Récupérer les utilisateurs existants
+                const utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
+                
+                // Vérifier si l'email existe déjà
+                if (utilisateurs.some(u => u.email === email)) {
+                    alert('Cet email est déjà utilisé');
+                    return;
+                }
+                
+                // Créer le nouvel utilisateur
+                const nouvelUtilisateur = {
+                    id: Date.now(),
+                    nom,
+                    prenom,
+                    email,
+                    phone,
+                    password,
+                    dateInscription: new Date().toISOString(),
+                    adresse: null
+                };
+                
+                // Ajouter l'utilisateur
+                utilisateurs.push(nouvelUtilisateur);
+                localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
+                
+                // Connecter automatiquement l'utilisateur
+                localStorage.setItem('utilisateurConnecte', JSON.stringify(nouvelUtilisateur));
+                
+                alert('Inscription réussie ! Vous êtes maintenant connecté.');
+                window.location.href = 'compte.html';
+            });
+            
+            // Vérifier si un utilisateur est déjà connecté
+            const utilisateurConnecte = localStorage.getItem('utilisateurConnecte');
+            if (utilisateurConnecte) {
+                // Rediriger vers la page compte
+                window.location.href = 'compte.html';
+            }
+        });
+    </script>
+</body>
+</html>

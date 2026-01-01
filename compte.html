@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - FestiPrintz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="https://via.placeholder.com/50x50/550b14/ffffff?text=FP" alt="FestiPrintz Logo" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-name">FestiPrintz</div>
+                    <div class="logo-tagline">Objets personnalisés à Niamey</div>
+                </div>
+            </a>
+            
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="personnalisation.html"><i class="fas fa-palette"></i> Personnalisation</a>
+                <a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier <span class="cart-count">0</span></a>
+                <a href="compte.html" class="active"><i class="fas fa-user"></i> Mon compte</a>
+                <div class="social-icons">
+                    <a href="https://tiktok.com/@festiprintz.ny" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://instagram.com/FestiPrintz" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://snapchat.com/add/Festiprintz" target="_blank" class="social-icon"><i class="fab fa-snapchat"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="compte">
+        <div class="container">
+            <div class="compte-container">
+                <!-- Informations du compte -->
+                <div class="compte-info" id="compte-info">
+                    <h2><i class="fas fa-user-circle"></i> Mon Compte</h2>
+                    
+                    <div class="info-group">
+                        <h3><i class="fas fa-user"></i> Informations personnelles</h3>
+                        <p><strong>Nom:</strong> <span id="user-nom">-</span></p>
+                        <p><strong>Prénom:</strong> <span id="user-prenom">-</span></p>
+                        <p><strong>Email:</strong> <span id="user-email">-</span></p>
+                        <p><strong>Téléphone:</strong> <span id="user-phone">-</span></p>
+                        <p><strong>Membre depuis:</strong> <span id="user-date">-</span></p>
+                    </div>
+                    
+                    <div class="info-group">
+                        <h3><i class="fas fa-map-marker-alt"></i> Adresse de livraison</h3>
+                        <div id="adresse-container">
+                            <p id="user-adresse">Aucune adresse enregistrée</p>
+                        </div>
+                        <button id="btn-modifier-adresse" class="btn" style="margin-top: 1rem;">
+                            <i class="fas fa-edit"></i> Modifier l'adresse
+                        </button>
+                    </div>
+                    
+                    <div class="info-group">
+                        <h3><i class="fas fa-history"></i> Historique des commandes</h3>
+                        <div id="historique-commandes">
+                            <p>Aucune commande passée pour le moment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="account-actions">
+                        <button id="btn-deconnexion" class="btn" style="background: #ff4444;">
+                            <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de modification d'adresse -->
+                <div class="form-container" id="form-adresse" style="display: none;">
+                    <h2><i class="fas fa-map-marker-alt"></i> Modifier l'adresse</h2>
+                    <form id="adresse-form">
+                        <div class="form-group">
+                            <label for="adresse-ville"><i class="fas fa-city"></i> Ville</label>
+                            <input type="text" id="adresse-ville" value="Niamey" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse-quartier"><i class="fas fa-location-dot"></i> Quartier *</label>
+                            <input type="text" id="adresse-quartier" required placeholder="Ex: Plateau, Yantala, etc.">
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse-description"><i class="fas fa-house"></i> Description de l'adresse *</label>
+                            <textarea id="adresse-description" rows="3" required placeholder="Rue principale, maison bleue à côté de la mosquée..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse-notes"><i class="fas fa-note-sticky"></i> Notes supplémentaires (optionnel)</label>
+                            <textarea id="adresse-notes" rows="2" placeholder="Instructions spéciales pour la livraison..."></textarea>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit" class="btn">
+                                <i class="fas fa-save"></i> Enregistrer
+                            </button>
+                            <button type="button" id="btn-annuler-adresse" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Annuler
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FestiPrintz</h3>
+                    <p>Vente d'objets personnalisés à Niamey, Niger. Commandes via WhatsApp uniquement.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> +227 8114 4032</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Niamey, Niger</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="https://tiktok.com/@festiprintz.ny" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                        <a href="https://instagram.com/FestiPrintz" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://snapchat.com/add/Festiprintz" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 FestiPrintz - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/22781144032?text=Bonjour%20FestiPrintz,%20je%20voudrais%20plus%20d'informations" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mettreAJourCompteurPanier();
+            
+            // Vérifier si l'utilisateur est connecté
+            const utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte'));
+            
+            if (!utilisateurConnecte) {
+                // Rediriger vers la page de connexion
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Afficher les informations de l'utilisateur
+            document.getElementById('user-nom').textContent = utilisateurConnecte.nom;
+            document.getElementById('user-prenom').textContent = utilisateurConnecte.prenom;
+            document.getElementById('user-email').textContent = utilisateurConnecte.email;
+            document.getElementById('user-phone').textContent = utilisateurConnecte.phone;
+            
+            // Formater la date d'inscription
+            if (utilisateurConnecte.dateInscription) {
+                const date = new Date(utilisateurConnecte.dateInscription);
+                document.getElementById('user-date').textContent = date.toLocaleDateString('fr-FR');
+            }
+            
+            // Afficher l'adresse si elle existe
+            if (utilisateurConnecte.adresse) {
+                const adresseHTML = `
+                    <p><strong>Quartier:</strong> ${utilisateurConnecte.adresse.quartier}</p>
+                    <p><strong>Description:</strong> ${utilisateurConnecte.adresse.description}</p>
+                    ${utilisateurConnecte.adresse.notes ? `<p><strong>Notes:</strong> ${utilisateurConnecte.adresse.notes}</p>` : ''}
+                `;
+                document.getElementById('user-adresse').innerHTML = adresseHTML;
+            }
+            
+            // Charger l'historique des commandes
+            chargerHistoriqueCommandes();
+            
+            // Gestion de la modification d'adresse
+            const btnModifierAdresse = document.getElementById('btn-modifier-adresse');
+            const compteInfo = document.getElementById('compte-info');
+            const formAdresse = document.getElementById('form-adresse');
+            const btnAnnulerAdresse = document.getElementById('btn-annuler-adresse');
+            
+            btnModifierAdresse.addEventListener('click', () => {
+                compteInfo.style.display = 'none';
+                formAdresse.style.display = 'block';
+                
+                // Pré-remplir le formulaire si des données existent
+                if (utilisateurConnecte.adresse) {
+                    document.getElementById('adresse-quartier').value = utilisateurConnecte.adresse.quartier;
+                    document.getElementById('adresse-description').value = utilisateurConnecte.adresse.description;
+                    document.getElementById('adresse-notes').value = utilisateurConnecte.adresse.notes || '';
+                }
+            });
+            
+            btnAnnulerAdresse.addEventListener('click', () => {
+                formAdresse.style.display = 'none';
+                compteInfo.style.display = 'block';
+            });
+            
+            // Gestion du formulaire d'adresse
+            const adresseForm = document.getElementById('adresse-form');
+            adresseForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const quartier = document.getElementById('adresse-quartier').value.trim();
+                const description = document.getElementById('adresse-description').value.trim();
+                const notes = document.getElementById('adresse-notes').value.trim();
+                
+                if (!quartier || !description) {
+                    alert('Veuillez remplir les champs obligatoires (*)');
+                    return;
+                }
+                
+                // Mettre à jour l'adresse de l'utilisateur
+                utilisateurConnecte.adresse = {
+                    quartier,
+                    description,
+                    notes: notes || null
+                };
+                
+                // Mettre à jour dans localStorage
+                localStorage.setItem('utilisateurConnecte', JSON.stringify(utilisateurConnecte));
+                
+                // Mettre à jour dans la liste des utilisateurs
+                const utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
+                const index = utilisateurs.findIndex(u => u.id === utilisateurConnecte.id);
+                
+                if (index !== -1) {
+                    utilisateurs[index] = utilisateurConnecte;
+                    localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
+                }
+                
+                // Recharger la page
+                window.location.reload();
+            });
+            
+            // Gestion de la déconnexion
+            const btnDeconnexion = document.getElementById('btn-deconnexion');
+            btnDeconnexion.addEventListener('click', () => {
+                if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+                    localStorage.removeItem('utilisateurConnecte');
+                    window.location.href = 'index.html';
+                }
+            });
+            
+            // Fonction pour charger l'historique des commandes
+            function chargerHistoriqueCommandes() {
+                // Dans une vraie application, cela viendrait d'un backend
+                // Pour l'instant, nous simulons un historique vide
+                const historiqueContainer = document.getElementById('historique-commandes');
+                
+                // Vous pouvez ajouter ici une logique pour récupérer l'historique
+                // depuis localStorage ou une API
+                historiqueContainer.innerHTML = `
+                    <div class="historique-vide">
+                        <i class="fas fa-shopping-bag" style="font-size: 2rem; color: #ccc; margin-bottom: 1rem;"></i>
+                        <p>Aucune commande passée pour le moment</p>
+                        <a href="index.html" class="btn" style="margin-top: 1rem;">
+                            <i class="fas fa-shopping-bag"></i> Voir nos produits
+                        </a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

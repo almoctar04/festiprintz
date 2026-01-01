@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - FestiPrintz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="https://via.placeholder.com/50x50/550b14/ffffff?text=FP" alt="FestiPrintz Logo" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-name">FestiPrintz</div>
+                    <div class="logo-tagline">Objets personnalisés à Niamey</div>
+                </div>
+            </a>
+            
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="personnalisation.html"><i class="fas fa-palette"></i> Personnalisation</a>
+                <a href="panier.html" class="active"><i class="fas fa-shopping-cart"></i> Panier <span class="cart-count">0</span></a>
+                <a href="login.html"><i class="fas fa-user"></i> Connexion</a>
+                <div class="social-icons">
+                    <a href="https://tiktok.com/@festiprintz.ny" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://instagram.com/FestiPrintz" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://snapchat.com/add/Festiprintz" target="_blank" class="social-icon"><i class="fab fa-snapchat"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="panier">
+        <div class="container">
+            <h1><i class="fas fa-shopping-cart"></i> Mon Panier</h1>
+            
+            <div class="panier-container">
+                <div class="produits-panier" id="panier-items">
+                    <!-- Les produits du panier seront affichés ici -->
+                </div>
+                
+                <div class="resume-commande">
+                    <h2><i class="fas fa-receipt"></i> Récapitulatif</h2>
+                    
+                    <div class="ligne-resume">
+                        <span>Sous-total</span>
+                        <span id="sous-total">0 FCFA</span>
+                    </div>
+                    
+                    <div class="ligne-resume">
+                        <span>Frais de livraison</span>
+                        <span id="frais-livraison">0 FCFA</span>
+                    </div>
+                    
+                    <div class="ligne-resume total">
+                        <span><strong>Total</strong></span>
+                        <span><strong id="total-commande">0 FCFA</strong></span>
+                    </div>
+                    
+                    <div class="livraison-options">
+                        <h3><i class="fas fa-truck"></i> Options de livraison</h3>
+                        <div class="option-livraison">
+                            <input type="radio" id="livraison-standard" name="livraison" value="1000" checked>
+                            <label for="livraison-standard">
+                                <strong>Livraison standard</strong> - 1000 FCFA<br>
+                                <small>Quartiers centraux de Niamey (délai: 24-48h)</small>
+                            </label>
+                        </div>
+                        <div class="option-livraison">
+                            <input type="radio" id="livraison-eloignee" name="livraison" value="1500">
+                            <label for="livraison-eloignee">
+                                <strong>Livraison éloignée</strong> - 1500 FCFA<br>
+                                <small>Quartiers périphériques de Niamey (délai: 48-72h)</small>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="infos-livraison" style="display: none;">
+                        <h3><i class="fas fa-map-marker-alt"></i> Informations de livraison</h3>
+                        <div class="form-group">
+                            <label for="nom-complet">Nom complet *</label>
+                            <input type="text" id="nom-complet" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone *</label>
+                            <input type="tel" id="telephone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ville">Ville *</label>
+                            <input type="text" id="ville" value="Niamey" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="quartier">Quartier *</label>
+                            <input type="text" id="quartier" placeholder="Ex: Plateau, Yantala, etc." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse">Description de l'adresse *</label>
+                            <textarea id="adresse" rows="3" placeholder="Ex: Rue principale, maison bleue à côté de la mosquée..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Notes (optionnel)</label>
+                            <textarea id="notes" rows="2" placeholder="Instructions spéciales pour la livraison..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <button id="btn-commander" class="btn whatsapp-btn-panier" style="width: 100%;">
+                        <i class="fab fa-whatsapp"></i> Commander via WhatsApp
+                    </button>
+                    
+                    <div class="note-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Vous serez redirigé vers WhatsApp pour finaliser votre commande</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="panier-vide" class="panier-vide" style="display: none;">
+                <i class="fas fa-shopping-cart" style="font-size: 4rem; color: #ccc; margin-bottom: 1rem;"></i>
+                <h2>Votre panier est vide</h2>
+                <p>Ajoutez des produits pour commencer vos achats</p>
+                <a href="index.html" class="btn"><i class="fas fa-shopping-bag"></i> Voir nos produits</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FestiPrintz</h3>
+                    <p>Vente d'objets personnalisés à Niamey, Niger. Commandes via WhatsApp uniquement.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> +227 8114 4032</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Niamey, Niger</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="https://tiktok.com/@festiprintz.ny" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                        <a href="https://instagram.com/FestiPrintz" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://snapchat.com/add/Festiprintz" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 FestiPrintz - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/22781144032?text=Bonjour%20FestiPrintz,%20je%20voudrais%20plus%20d'informations" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mettreAJourCompteurPanier();
+            afficherPanier();
+            
+            // Gestion des options de livraison
+            const livraisonOptions = document.querySelectorAll('input[name="livraison"]');
+            livraisonOptions.forEach(option => {
+                option.addEventListener('change', calculerTotal);
+            });
+            
+            // Afficher/masquer les infos de livraison
+            const btnCommander = document.getElementById('btn-commander');
+            const infosLivraison = document.getElementById('infos-livraison');
+            
+            btnCommander.addEventListener('click', function() {
+                const panier = JSON.parse(localStorage.getItem('panier')) || [];
+                if (panier.length === 0) {
+                    alert('Votre panier est vide !');
+                    return;
+                }
+                
+                // Si les infos de livraison ne sont pas visibles, les afficher
+                if (infosLivraison.style.display === 'none') {
+                    infosLivraison.style.display = 'block';
+                    this.innerHTML = '<i class="fab fa-whatsapp"></i> Confirmer et commander via WhatsApp';
+                    this.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    // Vérifier les champs obligatoires
+                    const nom = document.getElementById('nom-complet').value.trim();
+                    const telephone = document.getElementById('telephone').value.trim();
+                    const quartier = document.getElementById('quartier').value.trim();
+                    const adresse = document.getElementById('adresse').value.trim();
+                    
+                    if (!nom || !telephone || !quartier || !adresse) {
+                        alert('Veuillez remplir tous les champs obligatoires (*)');
+                        return;
+                    }
+                    
+                    // Préparer la commande WhatsApp
+                    commanderViaWhatsApp();
+                }
+            });
+            
+            // Fonction pour commander via WhatsApp
+            function commanderViaWhatsApp() {
+                const panier = JSON.parse(localStorage.getItem('panier')) || [];
+                const livraison = document.querySelector('input[name="livraison"]:checked').value;
+                const livraisonText = livraison === "1000" ? "1000 FCFA (standard)" : "1500 FCFA (éloignée)";
+                
+                // Récupérer les infos de livraison
+                const nom = document.getElementById('nom-complet').value.trim();
+                const telephone = document.getElementById('telephone').value.trim();
+                const quartier = document.getElementById('quartier').value.trim();
+                const adresse = document.getElementById('adresse').value.trim();
+                const notes = document.getElementById('notes').value.trim();
+                
+                // Calculer les totaux
+                const sousTotal = panier.reduce((total, item) => total + (item.prix * item.quantite), 0);
+                const total = sousTotal + parseInt(livraison);
+                
+                // Construire le message
+                let message = `🎉 NOUVELLE COMMANDE FESTIPRINTZ 🎉%0A%0A`;
+                message += `👤 *Client:* ${nom}%0A`;
+                message += `📞 *Téléphone:* ${telephone}%0A`;
+                message += `📍 *Adresse:* ${quartier}, Niamey%0A`;
+                message += `📝 *Détails adresse:* ${adresse}%0A`;
+                
+                if (notes) {
+                    message += `📋 *Notes:* ${notes}%0A`;
+                }
+                
+                message += `%0A📦 *PRODUITS COMMANDÉS:*%0A`;
+                
+                panier.forEach((item, index) => {
+                    message += `%0A${index + 1}. *${item.nom}*%0A`;
+                    message += `   Quantité: ${item.quantite}%0A`;
+                    message += `   Prix unitaire: ${item.prix.toLocaleString()} FCFA%0A`;
+                    message += `   Sous-total: ${(item.prix * item.quantite).toLocaleString()} FCFA%0A`;
+                    
+                    // Ajouter les détails de personnalisation si présents
+                    if (item.personnalisation) {
+                        if (item.personnalisation.texte) {
+                            message += `   Texte: "${item.personnalisation.texte}"%0A`;
+                        }
+                        if (item.personnalisation.couleur) {
+                            message += `   Couleur: ${item.personnalisation.couleur}%0A`;
+                        }
+                        if (item.personnalisation.image === 'oui') {
+                            message += `   Avec image personnalisée%0A`;
+                        }
+                    }
+                });
+                
+                message += `%0A💰 *RÉCAPITULATIF:*%0A`;
+                message += `Sous-total: ${sousTotal.toLocaleString()} FCFA%0A`;
+                message += `Livraison: ${livraisonText}%0A`;
+                message += `*TOTAL: ${total.toLocaleString()} FCFA*%0A%0A`;
+                message += `🕐 Commande passée le: ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR', {hour: '2-digit', minute:'2-digit'})}`;
+                
+                // Encoder le message pour URL
+                const whatsappUrl = `https://wa.me/22781144032?text=${message}`;
+                
+                // Ouvrir WhatsApp
+                window.open(whatsappUrl, '_blank');
+                
+                // Vider le panier
+                localStorage.removeItem('panier');
+                mettreAJourCompteurPanier();
+                
+                // Afficher message de confirmation
+                alert('Commande envoyée ! Vous allez être redirigé vers WhatsApp pour finaliser.');
+                
+                // Rediriger vers l'accueil après 3 secondes
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 3000);
+            }
+            
+            // Fonction pour afficher le panier
+            function afficherPanier() {
+                const panier = JSON.parse(localStorage.getItem('panier')) || [];
+                const container = document.getElementById('panier-items');
+                const panierVide = document.getElementById('panier-vide');
+                
+                if (panier.length === 0) {
+                    container.style.display = 'none';
+                    panierVide.style.display = 'block';
+                    document.querySelector('.panier-container').style.display = 'none';
+                    return;
+                }
+                
+                container.innerHTML = '';
+                panier.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item-panier';
+                    itemDiv.innerHTML = `
+                        <div class="item-info">
+                            <h4>${item.nom}</h4>
+                            <p>${item.prix.toLocaleString()} FCFA × ${item.quantite}</p>
+                            <div class="item-quantite">
+                                <button class="btn-quantite moins" data-index="${index}"><i class="fas fa-minus"></i></button>
+                                <span>${item.quantite}</span>
+                                <button class="btn-quantite plus" data-index="${index}"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="item-total">${(item.prix * item.quantite).toLocaleString()} FCFA</div>
+                            <button class="btn-supprimer" data-index="${index}">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(itemDiv);
+                });
+                
+                // Ajouter les événements
+                document.querySelectorAll('.btn-quantite.moins').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        modifierQuantite(index, -1);
+                    });
+                });
+                
+                document.querySelectorAll('.btn-quantite.plus').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        modifierQuantite(index, 1);
+                    });
+                });
+                
+                document.querySelectorAll('.btn-supprimer').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        supprimerDuPanier(index);
+                    });
+                });
+                
+                calculerTotal();
+            }
+            
+            // Fonction pour modifier la quantité
+            function modifierQuantite(index, delta) {
+                const panier = JSON.parse(localStorage.getItem('panier')) || [];
+                
+                if (panier[index]) {
+                    panier[index].quantite += delta;
+                    
+                    if (panier[index].quantite < 1) {
+                        panier[index].quantite = 1;
+                    }
+                    
+                    localStorage.setItem('panier', JSON.stringify(panier));
+                    afficherPanier();
+                    mettreAJourCompteurPanier();
+                }
+            }
+            
+            // Fonction pour supprimer un produit
+            function supprimerDuPanier(index) {
+                const panier = JSON.parse(localStorage.getItem('panier')) || [];
+                
+                if (confirm('Voulez-vous vraiment supprimer ce produit du panier ?')) {
+                    panier.splice(index, 1);
+                    localStorage.setItem('panier', JSON.stringify(panier));
+                    afficherPanier();
+                    mettreAJourCompteurPanier();
+                }
+            }
+            
+            // Fonction pour calculer le total
+            function calculerTotal() {
+                const panier = JSON.parse(localStorage.getItem('panier')) || [];
+                const sousTotal = panier.reduce((total, item) => total + (item.prix * item.quantite), 0);
+                const livraison = parseInt(document.querySelector('input[name="livraison"]:checked').value) || 0;
+                const total = sousTotal + livraison;
+                
+                document.getElementById('sous-total').textContent = sousTotal.toLocaleString() + ' FCFA';
+                document.getElementById('frais-livraison').textContent = livraison.toLocaleString() + ' FCFA';
+                document.getElementById('total-commande').textContent = total.toLocaleString() + ' FCFA';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnalisation - FestiPrintz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="image/logo.jpeg" alt="FestiPrintz Logo" class="logo-image">
+                <div class="logo-text">
+                    <div class="logo-name">FestiPrintz</div>
+                    <div class="logo-tagline">Objets personnalisés à Niamey</div>
+                </div>
+            </a>
+            
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="personnalisation.html" class="active"><i class="fas fa-palette"></i> Personnalisation</a>
+                <a href="panier.html"><i class="fas fa-shopping-cart"></i> Panier <span class="cart-count">0</span></a>
+                <a href="login.html"><i class="fas fa-user"></i> Connexion</a>
+                <div class="social-icons">
+                    <a href="https://tiktok.com/@festiprintz.ny" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://instagram.com/FestiPrintz" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://snapchat.com/add/Festiprintz" target="_blank" class="social-icon"><i class="fab fa-snapchat"></i></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="personnalisation">
+        <div class="container">
+            <h1><i class="fas fa-palette"></i> Personnalisez Votre Produit</h1>
+            <p class="subtitle">Créez un produit unique en 4 étapes simples</p>
+            
+            <div class="etape">
+                <h2><span class="etape-num">1</span> Choisissez un produit</h2>
+                <div class="option">
+                    <label for="select-produit"><i class="fas fa-box"></i> Sélectionnez un produit à personnaliser</label>
+                    <select id="select-produit" class="select-produit">
+                        <option value="">-- Sélectionnez un produit --</option>
+                        <option value="10000" data-nom="Sac cadeau">Sac cadeau minimum 15 pieces - 10000 FCFA</option>
+                        <option value="7000" data-nom="Emballage bonbon">Emballage bonbon - 7000 FCFA</option>
+                        <option value="5000" data-nom="Mug perlée">Mug perlée - 5000 FCFA</option>
+                        <option value="25000" data-nom="Decoration de valise">Decoration de valise 6 pieces - 25000 FCFA</option>
+                        <option value="7000" data-nom="Gourdes personnalisées">Gourdes personnalisées - 7000 FCFA</option>
+                        <option value="30000" data-nom="Box Asma">Box Asma - 30000 FCFA</option>
+                        <option value="20000" data-nom="Bouquet de ballon">Bouquet de ballon - 20000 FCFA</option>
+                        <option value="15000" data-nom="Box Adnane">Box Adnane - 15000 FCFA</option>
+                        <option value="8000" data-nom="Tableau personnalisé">Tableau personnalisé X - 8000 FCFA</option>
+                        <option value="13000" data-nom="Tableau personnalisé">Tableau personnalisé XL - 13000 FCFA</option>
+                        <option value="15000" data-nom="Tableau personnalisé">Tableau personnalisé XXL - 18000 FCFA</option>
+                        <option value="4000" data-nom="Mug personnalisé">Mug personnalisé - 4000 FCFA</option>
+                        <option value="15000" data-nom="Tableau fiançailles">Plateau fiançailles - 15000 FCFA</option>
+                        <option value="10000" data-nom="Carte cadeau">Carte cadeau minimun 25 pieces - 10000 FCFA</option>
+                        <option value="15000" data-nom="Carnet">Carnet minimum 25 pieces - 15000 FCFA</option>
+                        <option value="10000" data-nom="Carte d'invitation">Carte d'invitation minimum 25 pieces - 10000 FCFA</option>
+                        <option value="10000" data-nom="Box de fleur personnalisée">Box de fleur personnalisée - 10000 FCFA</option>
+                        <option value="10000" data-nom="Invitation en éventail">Invitation en évantail minimum 25 pieces - 10000 FCFA</option>
+                        <option value="15000" data-nom="Box dragées">Box dragées minimum 30 pieces - 15000 FCFA</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="etape">
+                <h2><span class="etape-num">2</span> Ajoutez du texte personnalisé</h2>
+                <div class="option">
+                    <label for="texte-personnalise"><i class="fas fa-font"></i> Texte à imprimer (max 50 caractères)</label>
+                    <input type="text" id="texte-personnalise" placeholder="Ex: Joyeux Anniversaire !" maxlength="50">
+                    <div class="caractere-count"><span id="caractere-restant">50</span> caractères restants</div>
+                </div>
+            </div>
+            
+            <div class="etape">
+                <h2><span class="etape-num">3</span> Choisissez la couleur</h2>
+                <div class="option">
+                    <label><i class="fas fa-fill-drip"></i> Couleur d'impression</label>
+                    <div class="couleurs">
+                        <div class="couleur-option" style="background-color: #550b14;" data-couleur="#550b14" title="Rouge foncé"></div>
+                        <div class="couleur-option" style="background-color: #000000;" data-couleur="#000000" title="Noir"></div>
+                        <div class="couleur-option" style="background-color: #ffffff; border: 1px solid #ccc;" data-couleur="#ffffff" title="Blanc"></div>
+                        <div class="couleur-option" style="background-color: #0d47a1;" data-couleur="#0d47a1" title="Bleu"></div>
+                        <div class="couleur-option" style="background-color: #1b5e20;" data-couleur="#1b5e20" title="Vert"></div>
+                        <div class="couleur-option" style="background-color: #ff9800;" data-couleur="#ff9800" title="Orange"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="etape">
+                <h2><span class="etape-num">4</span> Téléchargez une image (optionnel)</h2>
+                <div class="option">
+                    <label><i class="fas fa-image"></i> Image personnalisée</label>
+                    <div class="upload-area" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                        <p>Glissez-déposez une image ici ou cliquez pour sélectionner</p>
+                        <p class="note">Formats acceptés: JPG, PNG (max 5MB)</p>
+                        <input type="file" id="file-input" accept="image/*" style="display: none;">
+                    </div>
+                    <div id="image-preview" style="display: none; margin-top: 1rem;">
+                        <img id="preview-image" src="" alt="Aperçu" style="max-width: 200px; border-radius: 8px;">
+                        <button id="remove-image" class="btn" style="margin-left: 1rem; padding: 5px 10px; background: #ff4444;">
+                            <i class="fas fa-trash"></i> Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="apercu">
+                <h2><i class="fas fa-eye"></i> Aperçu de votre produit</h2>
+                <div class="apercu-produit">
+                    <div class="apercu-image" id="apercu-visuel">
+                        <i class="fas fa-gift" style="font-size: 3rem; color: var(--primary);"></i>
+                    </div>
+                    <div class="apercu-details">
+                        <h3 id="apercu-nom">Objet personnalisé</h3>
+                        <p id="apercu-texte">Votre texte apparaîtra ici</p>
+                        <p id="apercu-couleur" style="display: flex; align-items: center; gap: 8px;">
+                            <span class="couleur-cercle" style="width: 20px; height: 20px; border-radius: 50%; background-color: #550b14;"></span>
+                            Couleur: Rouge foncé
+                        </p>
+                        <p id="apercu-image" style="display: none;"><i class="fas fa-image"></i> Avec image personnalisée</p>
+                        <h3 id="apercu-prix" style="color: var(--primary); margin-top: 1rem;">3500 FCFA</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="btn-ajouter-perso" class="btn" style="padding: 15px 30px; font-size: 1.2rem;">
+                    <i class="fas fa-cart-plus"></i> Ajouter au panier (3500 FCFA)
+                </button>
+                <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Retour aux produits</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FestiPrintz</h3>
+                    <p>Vente d'objets personnalisés à Niamey, Niger. Commandes via WhatsApp uniquement.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-phone"></i> +227 8114 4032</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Niamey, Niger</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="https://tiktok.com/@festiprintz.ny" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                        <a href="https://instagram.com/FestiPrintz" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://snapchat.com/add/Festiprintz" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 FestiPrintz - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/22781144032?text=Bonjour%20FestiPrintz,%20je%20voudrais%20plus%20d'informations" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mettreAJourCompteurPanier();
+            
+            // Gestion de la personnalisation
+            const selectProduit = document.getElementById('select-produit');
+            const textePersonnalise = document.getElementById('texte-personnalise');
+            const caractereRestant = document.getElementById('caractere-restant');
+            const couleurOptions = document.querySelectorAll('.couleur-option');
+            const uploadArea = document.getElementById('upload-area');
+            const fileInput = document.getElementById('file-input');
+            const previewContainer = document.getElementById('image-preview');
+            const previewImage = document.getElementById('preview-image');
+            const removeImageBtn = document.getElementById('remove-image');
+            const btnAjouterPerso = document.getElementById('btn-ajouter-perso');
+            
+            // Éléments d'aperçu
+            const apercuVisuel = document.getElementById('apercu-visuel');
+            const apercuNom = document.getElementById('apercu-nom');
+            const apercuTexte = document.getElementById('apercu-texte');
+            const apercuCouleur = document.getElementById('apercu-couleur');
+            const apercuPrix = document.getElementById('apercu-prix');
+            const apercuImage = document.getElementById('apercu-image');
+            
+            let produitSelectionne = {
+                nom: "Objet personnalisé standard",
+                prix: 3500,
+                couleur: "#550b14",
+                texte: "",
+                image: null
+            };
+            
+            // Mise à jour du produit sélectionné
+            selectProduit.addEventListener('change', function() {
+                if (this.value) {
+                    const option = this.options[this.selectedIndex];
+                    produitSelectionne.prix = parseInt(this.value);
+                    produitSelectionne.nom = option.getAttribute('data-nom');
+                    
+                    // Mettre à jour l'aperçu
+                    apercuNom.textContent = produitSelectionne.nom;
+                    apercuPrix.textContent = produitSelectionne.prix.toLocaleString() + " FCFA";
+                    btnAjouterPerso.innerHTML = `<i class="fas fa-cart-plus"></i> Ajouter au panier (${produitSelectionne.prix.toLocaleString()} FCFA)`;
+                }
+            });
+            
+            // Gestion du texte personnalisé
+            textePersonnalise.addEventListener('input', function() {
+                const longueur = this.value.length;
+                caractereRestant.textContent = 50 - longueur;
+                produitSelectionne.texte = this.value;
+                
+                if (this.value.trim()) {
+                    apercuTexte.textContent = this.value;
+                } else {
+                    apercuTexte.textContent = "Votre texte apparaîtra ici";
+                }
+            });
+            
+            // Gestion des couleurs
+            couleurOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const couleur = this.getAttribute('data-couleur');
+                    produitSelectionne.couleur = couleur;
+                    
+                    // Mettre à jour l'affichage
+                    const couleurCercle = apercuCouleur.querySelector('.couleur-cercle');
+                    couleurCercle.style.backgroundColor = couleur;
+                    
+                    // Mettre à jour le texte
+                    const couleurNoms = {
+                        "#550b14": "Rouge foncé",
+                        "#000000": "Noir",
+                        "#ffffff": "Blanc",
+                        "#0d47a1": "Bleu",
+                        "#1b5e20": "Vert",
+                        "#ff9800": "Orange"
+                    };
+                    apercuCouleur.innerHTML = `
+                        <span class="couleur-cercle" style="width: 20px; height: 20px; border-radius: 50%; background-color: ${couleur};"></span>
+                        Couleur: ${couleurNoms[couleur] || couleur}
+                    `;
+                    
+                    // Mettre à jour l'icône dans l'aperçu visuel
+                    const icon = apercuVisuel.querySelector('i');
+                    icon.style.color = couleur === "#ffffff" ? "#550b14" : couleur;
+                });
+            });
+            
+            // Gestion du téléchargement d'image
+            uploadArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewContainer.style.display = 'block';
+                        produitSelectionne.image = e.target.result;
+                        apercuImage.style.display = 'block';
+                    }
+                    
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+            
+            removeImageBtn.addEventListener('click', function() {
+                previewContainer.style.display = 'none';
+                fileInput.value = '';
+                produitSelectionne.image = null;
+                apercuImage.style.display = 'none';
+            });
+            
+            // Drag and drop pour l'image
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--primary)';
+                uploadArea.style.background = '#f9f9f9';
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.style.borderColor = 'var(--secondary)';
+                uploadArea.style.background = 'white';
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.style.borderColor = 'var(--secondary)';
+                uploadArea.style.background = 'white';
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    const event = new Event('change', { bubbles: true });
+                    fileInput.dispatchEvent(event);
+                }
+            });
+            
+            // Ajout au panier
+            btnAjouterPerso.addEventListener('click', function() {
+                if (!selectProduit.value) {
+                    alert('Veuillez sélectionner un produit');
+                    return;
+                }
+                
+                const produitPanier = {
+                    id: Date.now(), // ID unique
+                    nom: produitSelectionne.nom + " (Personnalisé)",
+                    prix: produitSelectionne.prix,
+                    quantite: 1,
+                    personnalisation: {
+                        texte: produitSelectionne.texte,
+                        couleur: produitSelectionne.couleur,
+                        image: produitSelectionne.image ? 'oui' : 'non'
+                    }
+                };
+                
+                let panier = JSON.parse(localStorage.getItem('panier')) || [];
+                panier.push(produitPanier);
+                localStorage.setItem('panier', JSON.stringify(panier));
+                
+                mettreAJourCompteurPanier();
+                
+                // Animation de confirmation
+                this.classList.add('added');
+                setTimeout(() => {
+                    this.classList.remove('added');
+                    alert('Produit ajouté au panier !');
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
