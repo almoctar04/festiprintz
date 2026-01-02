@@ -24,3 +24,43 @@ Site de vente d'objets personnalisés à Niamey, Niger.
    - **Start Command:** `npm start`
 
 4. **Ajoutez les variables d'environnement:**
+ADMIN_EMAIL=votre_email@gmail.com
+ADMIN_PASSWORD=votre_mot_de_passe_fort
+NODE_ENV=production
+
+
+5. **Déployez**
+- Cliquez sur "Create Web Service"
+- Attendez la fin du déploiement (3-5 minutes)
+
+6. **Accédez au site**
+- Votre site sera disponible à: `https://festiprintz.onrender.com`
+
+## 🔧 Configuration Admin
+
+Après déploiement:
+1. Allez sur `/admin.html`
+2. Connectez-vous avec:
+- Email: Celui défini dans `ADMIN_EMAIL`
+- Mot de passe: Celui défini dans `ADMIN_PASSWORD`
+
+## 📞 Contact
+- WhatsApp: +227 8114 4032
+- Instagram: @FestiPrintz
+- TikTok: @festiprintz.ny
+- Snapchat: Festiprintz
+
+## 🛠️ Développement local
+
+```bash
+# 1. Clonez le dépôt
+git clone https://github.com/votre-username/festiprintz.git
+cd festiprintz
+
+# 2. Installez les dépendances
+npm install
+
+# 3. Démarrez le serveur
+npm start
+
+# 4. Ouvrez http://localhost:3000
