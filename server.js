@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 10000;
 
 // Configuration sécurité
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@festiprintz.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'Maimousidibe0@gmail.com';
 const SALT_ROUNDS = 10;
 
 // Middleware
@@ -67,6 +67,47 @@ function produitsParDefaut() {
         }
     ];
 }
+
+// === FONCTION POUR CREER L'ADMIN SI INEXISTANT ===
+async function creerAdminSiInexistant() {
+    const utilisateurs = lireFichierJSON(UTILISATEURS_FILE);
+    const adminEmail = process.env.ADMIN_EMAIL || 'Maimousidibe0@gmail.com';
+    
+    // Vérifier si l'admin existe déjà
+    const adminExiste = utilisateurs.some(u => u.email === adminEmail && u.role === 'admin');
+    
+    if (!adminExiste) {
+        console.log('🛠️ Création du compte administrateur...');
+        
+        const adminPassword = process.env.ADMIN_PASSWORD || 'mouna@24-93';
+        const hashedPassword = await bcrypt.hash(adminPassword, 10);
+        
+        const nouvelAdmin = {
+            id: utilisateurs.length > 0 ? Math.max(...utilisateurs.map(u => u.id)) + 1 : 1,
+            email: adminEmail,
+            password: hashedPassword,
+            nom: 'Admin',
+            prenom: 'FestiPrintz',
+            telephone: '+227 8114 4032',
+            dateInscription: new Date().toISOString(),
+            adresse: null,
+            role: 'admin'
+        };
+        
+        utilisateurs.push(nouvelAdmin);
+        ecrireFichierJSON(UTILISATEURS_FILE, utilisateurs);
+        
+        console.log('✅ Admin créé avec succès!');
+        console.log(`📧 Email: ${adminEmail}`);
+        
+        // Ne pas afficher le mot de passe en clair
+    } else {
+        console.log('✅ Compte admin déjà existant.');
+    }
+}
+
+// Appeler cette fonction au démarrage du serveur
+creerAdminSiInexistant();
 
 // Fonctions utilitaires
 function lireJSON(fichier) {
