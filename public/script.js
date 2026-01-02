@@ -1,3 +1,10 @@
+// Configuration API - Automatique pour Render
+const API_URL = window.location.origin.includes('localhost') 
+    ? 'http://localhost:3000/api' 
+    : '/api';
+
+console.log('🌐 API URL:', API_URL);
+
 // Données des produits
 let produits = [
     
