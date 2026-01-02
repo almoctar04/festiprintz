@@ -386,216 +386,174 @@
 
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            mettreAJourCompteurPanier();
+        // Dans la partie <script> à la fin du fichier admin.html
+document.addEventListener('DOMContentLoaded', async () => {
+    mettreAJourCompteurPanier();
+    
+    // Vérifier si l'admin est connecté
+    const adminConnecte = localStorage.getItem('adminConnecte');
+    const utilisateurConnecte = JSON.parse(localStorage.getItem('utilisateurConnecte'));
+    
+    if (!adminConnecte && (!utilisateurConnecte || utilisateurConnecte.email !== 'Maimousidibe0@gmail.com')) {
+        // Gestion de la connexion admin
+        const adminLoginForm = document.getElementById('admin-login-form');
+        adminLoginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            // Vérifier si l'admin est déjà connecté
-            const adminConnecte = localStorage.getItem('adminConnecte');
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
             
-            if (adminConnecte === 'true') {
-                afficherPanelAdmin();
-                chargerDonneesAdmin();
+            const ADMIN_EMAIL = 'Maimousidibe0@gmail.com';
+            const ADMIN_PASSWORD = 'mouna@24-93';
+            
+            if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+                localStorage.setItem('adminConnecte', 'true');
+                
+                // Vérifier si l'admin existe dans la base de données
+                try {
+                    const utilisateurs = await fetch(`${API_URL}/utilisateurs`).then(r => r.json());
+                    let admin = utilisateurs.find(u => u.email === ADMIN_EMAIL);
+                    
+                    if (!admin) {
+                        // Créer l'admin s'il n'existe pas
+                        admin = await inscrireUtilisateur({
+                            email: ADMIN_EMAIL,
+                            password: ADMIN_PASSWORD,
+                            nom: 'Admin',
+                            prenom: 'FestiPrintz',
+                            telephone: '+22781144032',
+                            role: 'admin'
+                        });
+                    }
+                    
+                    localStorage.setItem('utilisateurConnecte', JSON.stringify(admin));
+                    afficherPanelAdmin();
+                    chargerDonneesAdmin();
+                } catch (error) {
+                    console.error('Erreur:', error);
+                    afficherPanelAdmin();
+                    chargerDonneesAdmin();
+                }
             } else {
-                // Gestion de la connexion admin
-                const adminLoginForm = document.getElementById('admin-login-form');
-                adminLoginForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    const email = document.getElementById('admin-email').value;
-                    const password = document.getElementById('admin-password').value;
-                    
-                    // Identifiants admin par défaut (à changer en production)
-                    const ADMIN_EMAIL = 'Maimousidibe0@gmail.com';
-                    const ADMIN_PASSWORD = 'mouna@24-93';
-                    
-                    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                        localStorage.setItem('adminConnecte', 'true');
-                        afficherPanelAdmin();
-                        chargerDonneesAdmin();
-                    } else {
-                        alert('Identifiants administrateur incorrects');
-                    }
-                });
-            }
-            
-            // Fonction pour afficher le panel admin
-            function afficherPanelAdmin() {
-                document.getElementById('login-admin').style.display = 'none';
-                document.getElementById('admin-panel').style.display = 'block';
-            }
-            
-            // Fonction pour charger les données admin
-            function chargerDonneesAdmin() {
-                // Charger les statistiques
-                chargerStatistiques();
-                
-                // Charger les produits
-                chargerProduitsAdmin();
-                
-                // Gestion des tabs
-                const tabs = document.querySelectorAll('.admin-tab');
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', function() {
-                        const tabId = this.getAttribute('data-tab');
-                        
-                        // Désactiver tous les tabs
-                        tabs.forEach(t => t.classList.remove('active'));
-                        document.querySelectorAll('.admin-content').forEach(c => c.classList.remove('active'));
-                        
-                        // Activer le tab sélectionné
-                        this.classList.add('active');
-                        document.getElementById(tabId).classList.add('active');
-                    });
-                });
-                
-                // Gestion de l'ajout de produit
-                const formAjouterProduit = document.getElementById('form-ajouter-produit');
-                const imageInput = document.getElementById('produit-image');
-                const imagePreview = document.getElementById('image-preview-admin');
-                
-                imageInput.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
-                        const reader = new FileReader();
-                        
-                        reader.onload = function(e) {
-                            imagePreview.src = e.target.result;
-                            imagePreview.style.display = 'block';
-                        }
-                        
-                        reader.readAsDataURL(this.files[0]);
-                    }
-                });
-                
-                formAjouterProduit.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
-                    const nom = document.getElementById('produit-nom').value.trim();
-                    const prix = parseInt(document.getElementById('produit-prix').value);
-                    const description = document.getElementById('produit-description').value.trim();
-                    const phare = document.getElementById('produit-phare').checked;
-                    
-                    if (!nom || !prix) {
-                        alert('Veuillez remplir les champs obligatoires');
-                        return;
-                    }
-                    
-                    // Récupérer les produits existants
-                    const produits = JSON.parse(localStorage.getItem('produits')) || [];
-                    
-                    // Créer le nouveau produit
-                    const nouveauProduit = {
-                        id: produits.length > 0 ? Math.max(...produits.map(p => p.id)) + 1 : 1,
-                        nom,
-                        description,
-                        prix,
-                        image: imagePreview.src || 'https://via.placeholder.com/300x300/550b14/ffffff?text=Produit',
-                        phare
-                    };
-                    
-                    // Ajouter le produit
-                    produits.push(nouveauProduit);
-                    localStorage.setItem('produits', JSON.stringify(produits));
-                    
-                    alert('Produit ajouté avec succès !');
-                    formAjouterProduit.reset();
-                    imagePreview.style.display = 'none';
-                    
-                    // Recharger les produits
-                    chargerProduitsAdmin();
-                    chargerStatistiques();
-                    
-                    // Basculer vers l'onglet produits
-                    document.querySelector('.admin-tab[data-tab="produits"]').click();
-                });
-                
-                // Déconnexion admin
-                const btnLogoutAdmin = document.getElementById('btn-logout-admin');
-                btnLogoutAdmin.addEventListener('click', () => {
-                    if (confirm('Voulez-vous vraiment vous déconnecter du panel admin ?')) {
-                        localStorage.removeItem('adminConnecte');
-                        window.location.reload();
-                    }
-                });
-            }
-            
-            // Fonction pour charger les statistiques
-            function chargerStatistiques() {
-                const produits = JSON.parse(localStorage.getItem('produits')) || [];
-                const utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || [];
-                
-                // Statistiques produits
-                document.getElementById('stat-produits').textContent = produits.length;
-                
-                // Statistiques clients
-                document.getElementById('stat-clients').textContent = utilisateurs.length;
-                
-                // Statistiques chiffre d'affaires (simulation)
-                const chiffreAffaires = produits.reduce((total, produit) => total + produit.prix, 0) * 10;
-                document.getElementById('stat-chiffre').textContent = chiffreAffaires.toLocaleString();
-            }
-            
-            // Fonction pour charger les produits dans le tableau admin
-            function chargerProduitsAdmin() {
-                const produits = JSON.parse(localStorage.getItem('produits')) || [];
-                const tableBody = document.getElementById('produits-admin-table');
-                
-                tableBody.innerHTML = '';
-                
-                if (produits.length === 0) {
-                    tableBody.innerHTML = `
-                        <tr>
-                            <td colspan="5" style="text-align: center; padding: 2rem;">
-                                <i class="fas fa-box-open" style="font-size: 2rem; color: #ccc;"></i>
-                                <p>Aucun produit enregistré</p>
-                            </td>
-                        </tr>
-                    `;
-                    return;
-                }
-                
-                produits.forEach(produit => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${produit.id}</td>
-                        <td>${produit.nom}</td>
-                        <td>${produit.prix.toLocaleString()} FCFA</td>
-                        <td>${produit.phare ? '<i class="fas fa-star" style="color: gold;"></i> Oui' : 'Non'}</td>
-                        <td>
-                            <div class="admin-actions">
-                                <button class="btn-action btn-modifier" data-id="${produit.id}">
-                                    <i class="fas fa-edit"></i> Modifier
-                                </button>
-                                <button class="btn-action btn-supprimer" data-id="${produit.id}">
-                                    <i class="fas fa-trash"></i> Supprimer
-                                </button>
-                            </div>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-                
-                // Ajouter les événements pour les boutons
-                document.querySelectorAll('.btn-supprimer').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const produitId = parseInt(this.getAttribute('data-id'));
-                        supprimerProduit(produitId);
-                    });
-                });
-            }
-            
-            // Fonction pour supprimer un produit
-            function supprimerProduit(id) {
-                if (confirm('Voulez-vous vraiment supprimer ce produit ?')) {
-                    let produits = JSON.parse(localStorage.getItem('produits')) || [];
-                    produits = produits.filter(p => p.id !== id);
-                    localStorage.setItem('produits', JSON.stringify(produits));
-                    
-                    alert('Produit supprimé avec succès');
-                    chargerProduitsAdmin();
-                    chargerStatistiques();
-                }
+                alert('Identifiants administrateur incorrects');
             }
         });
+    } else {
+        afficherPanelAdmin();
+        chargerDonneesAdmin();
+    }
+    
+    async function chargerDonneesAdmin() {
+        // Charger les statistiques
+        chargerStatistiques();
+        
+        // Charger les produits depuis le serveur
+        await chargerProduitsAdmin();
+        
+        // ... reste du code existant ...
+    }
+    
+    async function chargerProduitsAdmin() {
+        try {
+            const produits = await chargerProduits();
+            const tableBody = document.getElementById('produits-admin-table');
+            
+            tableBody.innerHTML = '';
+            
+            if (produits.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-box-open" style="font-size: 2rem; color: #ccc;"></i>
+                            <p>Aucun produit enregistré</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            produits.forEach(produit => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${produit.id}</td>
+                    <td>${produit.nom}</td>
+                    <td>${produit.prix.toLocaleString()} FCFA</td>
+                    <td>${produit.phare ? '<i class="fas fa-star" style="color: gold;"></i> Oui' : 'Non'}</td>
+                    <td>
+                        <div class="admin-actions">
+                            <button class="btn-action btn-modifier" data-id="${produit.id}">
+                                <i class="fas fa-edit"></i> Modifier
+                            </button>
+                            <button class="btn-action btn-supprimer" data-id="${produit.id}">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+            
+            // Événements pour les boutons de suppression
+            document.querySelectorAll('.btn-supprimer').forEach(btn => {
+                btn.addEventListener('click', async function() {
+                    const produitId = parseInt(this.getAttribute('data-id'));
+                    if (confirm('Voulez-vous vraiment supprimer ce produit ?')) {
+                        await supprimerProduit(produitId);
+                        alert('Produit supprimé avec succès');
+                        await chargerProduitsAdmin();
+                        chargerStatistiques();
+                        
+                        // Recharger aussi sur la page d'accueil si ouverte
+                        if (typeof afficherProduits === 'function') {
+                            afficherProduits();
+                        }
+                    }
+                });
+            });
+        } catch (error) {
+            console.error('Erreur chargement produits admin:', error);
+        }
+    }
+    
+    // Gestion de l'ajout de produit
+    const formAjouterProduit = document.getElementById('form-ajouter-produit');
+    formAjouterProduit.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const nom = document.getElementById('produit-nom').value.trim();
+        const prix = parseInt(document.getElementById('produit-prix').value);
+        const description = document.getElementById('produit-description').value.trim();
+        const phare = document.getElementById('produit-phare').checked;
+        
+        if (!nom || !prix) {
+            alert('Veuillez remplir les champs obligatoires');
+            return;
+        }
+        
+        const produit = {
+            nom,
+            description,
+            prix,
+            phare,
+            image: 'https://via.placeholder.com/300x300/550b14/ffffff?text=Produit'
+        };
+        
+        try {
+            await ajouterProduit(produit);
+            alert('Produit ajouté avec succès !');
+            formAjouterProduit.reset();
+            
+            // Recharger les données
+            await chargerProduitsAdmin();
+            chargerStatistiques();
+            
+            // Basculer vers l'onglet produits
+            document.querySelector('.admin-tab[data-tab="produits"]').click();
+        } catch (error) {
+            alert('Erreur lors de l\'ajout du produit: ' + error.message);
+        }
+    });
+});
     </script>
 </body>
 </html>
